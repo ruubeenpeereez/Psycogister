@@ -11,7 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { Login } from './src/screens/login/login';
+import Login from './src/screens/login/Login';
 
 import {
   StatusBar,
@@ -19,6 +19,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ImageBackground,
   Image
 } from 'react-native';
 
@@ -31,6 +32,8 @@ const colors = {
   tint: "#2b49c3"
 }
 
+const image = { uri: "https://t3.ftcdn.net/jpg/01/04/00/12/360_F_104001210_V2Q2d2u5xVT5Ay8Afgp51c6vJIeFlqy6.jpg" };
+
 function Landing({ navigation }) {
   return (
     <TouchableOpacity
@@ -38,14 +41,15 @@ function Landing({ navigation }) {
       onPress={() => navigation.navigate('Login')}
       activeOpacity={0.55}
     >
-      <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
-      <Image
-        style={styles.img}
-        source={logo}
-      />
-      <Text style={styles.h1}>Psycogister</Text>
-    </TouchableOpacity>
+      <ImageBackground source={image} style={styles.bgImage} resizeMode="cover">
 
+        <StatusBar barStyle="light-content" backgroundColor={colors.themeColor} />
+        <Image
+          style={styles.img}
+          source={logo}
+        />
+      </ImageBackground>
+    </TouchableOpacity>
   );
 }
 
@@ -67,13 +71,20 @@ const App = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: "center",
+    alignContent: "center",
     flex: 1,
-    backgroundColor: colors.themeColor,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  bgImage: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
   },
   img: {
-    height: 190,
+    height: 290,
     width: 280,
     margin: 50,
     position: 'relative',

@@ -1,6 +1,17 @@
+import {
+    StatusBar,
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TouchableOpacity,
+    Alert} from 'react-native';
+
 import React from 'react';
-import { View, StyleSheet, Text, StatusBar, Image } from 'react-native';
-import { TextInput } from 'react-native-paper';
+
+import axios from "axios";
+import { TextInput } from "react-native-paper";
+
 
 const colors = {
     themeColor: "#4263ec",
@@ -10,7 +21,7 @@ const colors = {
     tint: "#2b49c3"
 }
 
-const Login = ({ navigation, route }) => {
+const Login2 = ({ navigation, route }) => {
 
     const [User, setUser] = React.useState("");
     const [Password, setPassword] = React.useState("");
@@ -73,24 +84,23 @@ const Login = ({ navigation, route }) => {
     }
 
 
-
     return (
-        <View>
+        <View style={styles.container}>
             <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
             <View style={styles.header}>
-                <Text style={styles.h1}>Inicio de Sesión</Text>
+                <Text style={styles.h1}>¡Welcome to DailySense! </Text>
             </View>
             <View style={styles.content}>
                 <View style={styles.form}>
                     <View style={styles.texti}>
                         <Image
                             style={styles.img}
-                            source={require('../../assets/design/user_Login.png')}
+                            source={require('')}
                         />
                         <TextInput
                             selectionColor={colors.themeColor}
                             outlineColor={colors.themeColor}
-                            placeholder='Nombre de Usuario'
+                            placeholder='Your Username goes here...'
                             style={styles.box}
                             label='Username'
                             mode='outlined'
@@ -98,8 +108,43 @@ const Login = ({ navigation, route }) => {
                             onChangeText={User => setUser(User)}
                             theme={{ colors: { primary: colors.tint } }}
                         />
-
                     </View>
+
+                    <View style={styles.texti}>
+                        <Image
+                            style={styles.img}
+                            source={require('')}
+                        />
+                        <TextInput
+                            selectionColor={colors.themeColor}
+                            outlineColor={colors.themeColor}
+                            placeholder='Your Password goes here...'
+                            style={styles.box}
+                            label='Password'
+                            mode='outlined'
+                            value={Password}
+                            onChangeText={Password => setPassword(Password)}
+                            secureTextEntry={true}
+                            theme={{ colors: { primary: colors.tint } }}
+                        />
+                    </View>
+                </View>
+                <View style={styles.contbtn}>
+                    <TouchableOpacity
+                        activeOpacity={0.75}
+                        style={styles.btnin}
+                        onPress={() => logIn()}>
+                        <Text style={styles.btninT}>SIGN IN</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.75}
+                        style={styles.btnout}
+                        onPress={() => navigation.navigate('CreateAccount')}>
+                        <Text style={styles.btnoutT}>SIGN UP</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.context}>
+                    <Text style={{ color: "black" }}>Florida - DAM 2 - DailySense - 2022©</Text>
                 </View>
             </View>
         </View>
@@ -133,8 +178,8 @@ const styles = StyleSheet.create({
         color: colors.white
     },
     img: {
-        height: 30,
-        width: 30,
+        height: 20,
+        width: 20,
     },
     content: {
         flex: 3,
@@ -202,4 +247,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Login2;
