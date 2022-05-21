@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import { View, StyleSheet, Text, StatusBar, Image, ImageBackground, TouchableOpacity, Alert } from 'react-native';
+=======
+import { View, StyleSheet, Text, StatusBar, Image, TouchableOpacity, Alert } from 'react-native';
+>>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
 import { TextInput } from 'react-native-paper';
 
 import axios from "axios";
@@ -38,12 +42,21 @@ const Login = ({ navigation, route }) => {
             const { correct } = resultat;
             const { Rol } = resultat;
             if (correct === "OK") {
+<<<<<<< HEAD
                 if (Rol == 1) {
                     navigation.navigate('Inicio', {
                         IdAssistant: resultat.Id,
                     })
                 }
 
+=======
+                /*navigation.navigate('IndexAssistant', {
+                    User: resultat.User,
+                    IdAssistant: resultat.IdAssistant,
+                    Gender: resultat.Gender,
+                    Mail: resultat.Email,
+                })*/
+>>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
             } else {
                 Alert.alert("Error 404", "The account could not be found", [
                     { text: "Ok", onPress: () => console.log("error") }
@@ -103,12 +116,13 @@ const Login = ({ navigation, route }) => {
                             outlineColor={colors.themeColor}
                             placeholder='Nombre de Usuario'
                             style={styles.box}
-                            label='Username'
+                            label='Nombre de Usuario'
                             mode='outlined'
                             value={User}
                             onChangeText={User => setUser(User)}
                             theme={{ colors: { primary: colors.tint } }}
                         />
+<<<<<<< HEAD
                     </View>
                     <View style={styles.texti}>
                         <Image
@@ -135,7 +149,38 @@ const Login = ({ navigation, route }) => {
                             onPress={() => logIn()}>
                             <Text style={styles.btninT}>Inicar Sesión</Text>
                         </TouchableOpacity>
+=======
+>>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
                     </View>
+                    <View style={styles.texti}>
+                        <Image
+                            style={styles.img}
+                            source={require('')}
+                        />
+                        <TextInput
+                            selectionColor={colors.themeColor}
+                            outlineColor={colors.themeColor}
+                            placeholder='Contraseña'
+                            style={styles.box}
+                            label='Contraseña'
+                            mode='outlined'
+                            value={Password}
+                            onChangeText={Password => setPassword(Password)}
+                            secureTextEntry={true}
+                            theme={{ colors: { primary: colors.tint } }}
+                        />
+                    </View>
+                </View>
+                <View style={styles.contbtn}>
+                    <TouchableOpacity
+                        activeOpacity={0.75}
+                        style={styles.btnin}
+                        onPress={() => logIn()}>
+                        <Text style={styles.btninT}>Iniciar Sesion</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.context}>
+                    <Text style={{ color: "black" }}>Florida - DAM 2 - Psycogister - 2022©</Text>
                 </View>
             </ImageBackground>
         </View>
