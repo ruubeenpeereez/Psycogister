@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Text, StatusBar, Image } from 'react-native';
+import { View, StyleSheet, Text, StatusBar, Image, ImageBackground, TouchableOpacity, Alert } from 'react-native';
 import { TextInput } from 'react-native-paper';
+
+import axios from "axios";
 
 const colors = {
     themeColor: "#4263ec",
@@ -10,6 +12,10 @@ const colors = {
     tint: "#2b49c3"
 }
 
+const image = require("../../assets/design/background.jpg");
+const logo = require("../../assets/design/Logo.png");
+
+
 const Login = ({ navigation, route }) => {
 
     const [User, setUser] = React.useState("");
@@ -17,11 +23,9 @@ const Login = ({ navigation, route }) => {
 
     const postDatos = async () => {
 
-        const resultInser = await axios.post('', { op: "login", user: User, pass: Password })
+        const resultInser = await axios.post('http:51.137.86.80:5000/test?', { op: "login", user: User, pass: Password })
 
         console.log(resultInser.data);
-
-        //setDatos(response.data);
 
         return resultInser.data;
 
@@ -32,13 +36,14 @@ const Login = ({ navigation, route }) => {
             const resultat = await postDatos();
 
             const { correct } = resultat;
+            const { Rol } = resultat;
             if (correct === "OK") {
-                navigation.navigate('IndexAssistant', {
-                    User: resultat.User,
-                    IdAssistant: resultat.IdAssistant,
-                    Gender: resultat.Gender,
-                    Mail: resultat.Email,
-                })
+                if (Rol == 1) {
+                    navigation.navigate('Inicio', {
+                        IdAssistant: resultat.Id,
+                    })
+                }
+
             } else {
                 Alert.alert("Error 404", "The account could not be found", [
                     { text: "Ok", onPress: () => console.log("error") }
@@ -75,12 +80,18 @@ const Login = ({ navigation, route }) => {
 
 
     return (
-        <View>
-            <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
-            <View style={styles.header}>
-                <Text style={styles.h1}>Inicio de Sesión</Text>
-            </View>
-            <View style={styles.content}>
+        <View style={styles.container}>
+            <ImageBackground source={image} style={styles.bgImage} resizeMode="cover">
+
+                <Image
+                    style={styles.LogoImg}
+                    source={logo}
+                />
+
+                <View style={styles.header}>
+                    <Text style={styles.h1}>Inicio de Sesión</Text>
+                </View>
+
                 <View style={styles.form}>
                     <View style={styles.texti}>
                         <Image
@@ -98,10 +109,35 @@ const Login = ({ navigation, route }) => {
                             onChangeText={User => setUser(User)}
                             theme={{ colors: { primary: colors.tint } }}
                         />
-
+                    </View>
+                    <View style={styles.texti}>
+                        <Image
+                            style={styles.img}
+                            source={require('../../assets/design/Lock.png')}
+                        />
+                        <TextInput
+                            selectionColor={colors.themeColor}
+                            outlineColor={colors.themeColor}
+                            placeholder='Contraseña'
+                            style={styles.box}
+                            label='Contraseña'
+                            mode='outlined'
+                            value={Password}
+                            secureTextEntry={true}
+                            onChangeText={Password => setPassword(Password)}
+                            theme={{ colors: { primary: colors.tint } }}
+                        />
+                    </View>
+                    <View style={styles.contbtn}>
+                        <TouchableOpacity
+                            activeOpacity={0.75}
+                            style={styles.btnin}
+                            onPress={() => logIn()}>
+                            <Text style={styles.btninT}>Inicar Sesión</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </ImageBackground>
         </View>
     );
 }
@@ -113,8 +149,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    LogoImg: {
+        height: 200,
+        alignSelf: 'center',
+        width: 190,
+        position: 'relative',
+        zIndex: 2,
+    },
+    bgImage: {  
+        height: "100%",
+        width: "100%",
+    },
     header: {
-        flex: 1,
+        flex: 0.2,
         width: '100%',
         justifyContent: 'center',
         alignItems: 'flex-start',
@@ -123,36 +170,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        padding: 10
+        padding: 10,
     },
     h1: {
         fontSize: 28,
         fontWeight: 'bold',
         position: 'relative',
         left: 30,
-        color: colors.white
+        color: '#18559d'
     },
     img: {
         height: 30,
         width: 30,
     },
-    content: {
-        flex: 3,
-        width: '100%',
-        backgroundColor: colors.white,
-        borderRadius: 40,
-        position: 'relative',
-        top: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     form: {
-        flex: 0.3,
+        flex: 0.7,
+        flexDirection: 'column',
         width: '80%',
-        justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
-        bottom: 20
+        left: 30
     },
     box: {
         height: 40,
@@ -162,11 +199,8 @@ const styles = StyleSheet.create({
     contbtn: {
         height: 150,
         width: '80%',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        position: 'relative',
-        top: 20,
-        left: 10,
+        top: 30,
+        left: 0,
     },
     btnin: {
         height: 45,

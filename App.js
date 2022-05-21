@@ -12,6 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Login from './src/screens/login/Login';
+import Inicio from './src/screens/terapeuta/Inicio';
 
 import {
   StatusBar,
@@ -63,6 +64,7 @@ const App = ({ navigation }) => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Landing" component={Landing} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Inicio" component={Inicio} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   img: {
     height: 290,
     width: 280,
-    margin: 50,
+    margin: 35,
     position: 'relative',
     zIndex: 2,
     bottom: 80
