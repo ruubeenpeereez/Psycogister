@@ -11,7 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Login from './src/screens/login/Login';
+import Login from './src/screens/login/login';
 import Inicio from './src/screens/terapeuta/Inicio';
 
 import {
