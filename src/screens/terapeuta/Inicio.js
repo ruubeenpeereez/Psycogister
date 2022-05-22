@@ -17,7 +17,7 @@ import { useIsFocused } from "@react-navigation/native";
 import axios from "axios";
 import { TextInput, Button } from "react-native-paper";
 
-//import Add from "./Add";
+import Add from "./AddPaciente";
 import CardPaciente from "./CardPaciente";
 //import Information from "./Information";
 
@@ -87,11 +87,11 @@ const Inicio = ({ route, navigation }) => {
                             return (<CardPaciente key={pos} id={element.IdDependents} name={element.Nombre} lastName={element.Apellidos} diseases={element.Diagnostico} tel={element.telefono}
                                 age={element.Edad} IdAssistant={IdAssistant}></CardPaciente>);
 
-                            /*onPress={() => navigation.navigate('Add', { User: User, IdAssistant: IdAssistant, Gender: Gender, Mail: Mail })}*/
+                            
                         })}
                     </ScrollView>
                 </View>
-                <TouchableOpacity style={styles.contbtn} >
+                <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('AddPaciente', {IdAssistant: IdAssistant,})} >
                     <Image
                         style={styles.imgbtn}
                         source={require('../../assets/design/Add.png')}

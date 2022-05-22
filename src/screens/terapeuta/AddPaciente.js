@@ -13,8 +13,6 @@ import {
 } from 'react-native';
 
 import axios from "axios";
-import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
-import Slider from '@react-native-community/slider';
 import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
 
 
@@ -130,7 +128,7 @@ const Add = ({ route, navigation }) => {
             <StatusBar barStyle="light-content" backgroundColor={colors.tint} />
             <View style={styles.content}>
                 <Image
-                    source={require('../../assets/img/logo1.png')}
+                    source={require('../../assets/design/LogoRecortado.png')}
                     style={styles.imagen}
                 />
                 <ScrollView >

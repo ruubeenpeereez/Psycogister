@@ -11,8 +11,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Login from './src/screens/login/Login';
+import Login from './src/screens/login/login';
 import Inicio from './src/screens/terapeuta/Inicio';
+import AddPaciente from './src/screens/terapeuta/AddPaciente';
 
 import {
   StatusBar,
@@ -65,6 +66,7 @@ const App = ({ navigation }) => {
           <Stack.Screen name="Landing" component={Landing} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Inicio" component={Inicio} />
+          <Stack.Screen name="AddPaciente" component={AddPaciente} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

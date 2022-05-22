@@ -1,9 +1,5 @@
-import React from 'react';
-<<<<<<< HEAD
+import React from "react";
 import { View, StyleSheet, Text, StatusBar, Image, ImageBackground, TouchableOpacity, Alert } from 'react-native';
-=======
-import { View, StyleSheet, Text, StatusBar, Image, TouchableOpacity, Alert } from 'react-native';
->>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
 import { TextInput } from 'react-native-paper';
 
 import axios from "axios";
@@ -42,21 +38,12 @@ const Login = ({ navigation, route }) => {
             const { correct } = resultat;
             const { Rol } = resultat;
             if (correct === "OK") {
-<<<<<<< HEAD
                 if (Rol == 1) {
                     navigation.navigate('Inicio', {
                         IdAssistant: resultat.Id,
                     })
                 }
 
-=======
-                /*navigation.navigate('IndexAssistant', {
-                    User: resultat.User,
-                    IdAssistant: resultat.IdAssistant,
-                    Gender: resultat.Gender,
-                    Mail: resultat.Email,
-                })*/
->>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
             } else {
                 Alert.alert("Error 404", "The account could not be found", [
                     { text: "Ok", onPress: () => console.log("error") }
@@ -122,7 +109,6 @@ const Login = ({ navigation, route }) => {
                             onChangeText={User => setUser(User)}
                             theme={{ colors: { primary: colors.tint } }}
                         />
-<<<<<<< HEAD
                     </View>
                     <View style={styles.texti}>
                         <Image
@@ -149,8 +135,6 @@ const Login = ({ navigation, route }) => {
                             onPress={() => logIn()}>
                             <Text style={styles.btninT}>Inicar Sesión</Text>
                         </TouchableOpacity>
-=======
->>>>>>> 6d3ac549f895050d1fadf33e3faeff67af25d6f3
                     </View>
                     <View style={styles.texti}>
                         <Image
@@ -201,7 +185,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         zIndex: 2,
     },
-    bgImage: {  
+    bgImage: {
         height: "100%",
         width: "100%",
     },
