@@ -13,8 +13,6 @@ import {
 import axios from "axios";
 import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
 import { TextInput, Button } from "react-native-paper";
-//import LinearGradient from "react-native-linear-gradient";
-//import Information from "../Assistant/Information";
 import { useNavigation } from '@react-navigation/native';
 import react from "react";
 import { white } from "react-native-paper/lib/typescript/styles/colors";
@@ -44,7 +42,7 @@ const CardPaciente = (props) => {
 
     const postDelete = async () => {
 
-        const resultInser = await axios.post('http:52.174.144.160:5000/test?', { op: "delete", id: props.id })
+        const resultInser = await axios.post('http:51.137.86.80:5000/test?', { op: "delete", id: props.id, idUsuario: props.idUsuario })
 
         console.log(resultInser.data);
 
@@ -120,17 +118,16 @@ const CardPaciente = (props) => {
                 <Text style={styles.h2}>{props.lastName}</Text>
             </View>
             <View style={styles.footer}>
-                <TouchableOpacity /*onPress={() => navigation.navigate('Information', {
+                <TouchableOpacity onPress={() => navigation.navigate('InfoPaciente', {
                     id: props.id,
+                    IdTerapeuta: props.IdTerapeuta,
                     tel: props.tel,
                     age: props.age,
-                    allergies: props.allergies,
-                    diseases: props.diseases,
-                    address: props.address,
+                    diagnostico: props.diagnostico,
                     name: props.name,
                     lastName: props.lastName,
-                    dependency: props.dependency,
-                })}*/>
+                    observaciones: props.observaciones,
+                })}>
                     <Text style={styles.btntext1}>Detalles</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn2} onPress={() => del()}>

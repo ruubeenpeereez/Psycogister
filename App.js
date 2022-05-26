@@ -13,6 +13,12 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Login from './src/screens/login/login';
 import Inicio from './src/screens/terapeuta/Inicio';
+import AddPaciente from './src/screens/terapeuta/AddPaciente';
+import InfoPaciente from './src/screens/terapeuta/InfoPaciente';
+import Autorregistros from './src/screens/terapeuta/Autorregistros';
+import Paciente from './src/screens/terapeuta/InfoPaciente';
+import InfoLinks from './src/screens/terapeuta/InfoLinks';
+
 
 import {
   StatusBar,
@@ -65,6 +71,10 @@ const App = ({ navigation }) => {
           <Stack.Screen name="Landing" component={Landing} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Inicio" component={Inicio} />
+          <Stack.Screen name="AddPaciente" component={AddPaciente} />
+          <Stack.Screen name="InfoPaciente" component={InfoPaciente} />
+          <Stack.Screen name="Autorregistros" component={Autorregistros} />
+          <Stack.Screen name="InfoLinks" component={InfoLinks} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

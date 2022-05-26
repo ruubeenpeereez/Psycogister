@@ -36,7 +36,7 @@ const Inicio = ({ route, navigation }) => {
 
     const isFocused = useIsFocused();
 
-    const { IdAssistant } = route.params;
+    const { IdTerapeuta } = route.params;
 
     const [pacientes, setPacientes] = React.useState([]);
 
@@ -50,7 +50,7 @@ const Inicio = ({ route, navigation }) => {
     }, [navigation, isFocused])
 
     const obtenerPacientes = async () => {
-        const resultInser = await axios.post('http:51.137.86.80:5000/test?', { op: "login2", id: IdAssistant })
+        const resultInser = await axios.post('http:51.137.86.80:5000/test?', { op: "login2", id: IdTerapeuta })
 
         console.log(resultInser.data);
 
@@ -84,14 +84,12 @@ const Inicio = ({ route, navigation }) => {
                         
                         {pacientes.map((element, pos) => {
                             console.log(element);
-                            return (<CardPaciente key={pos} id={element.IdDependents} name={element.Nombre} lastName={element.Apellidos} diseases={element.Diagnostico} tel={element.telefono}
-                                age={element.Edad} IdAssistant={IdAssistant}></CardPaciente>);
-
-                            /*onPress={() => navigation.navigate('Add', { User: User, IdAssistant: IdAssistant, Gender: Gender, Mail: Mail })}*/
+                            return (<CardPaciente key={pos} id={element.Id} name={element.Nombre} lastName={element.Apellidos} diagnostico={element.Diagnostico} tel={element.Telefono}
+                                age={element.Edad} idUsuario={element.IdUsuario} observaciones={element.Observaciones} IdTerapeuta={IdTerapeuta}></CardPaciente>);
                         })}
                     </ScrollView>
                 </View>
-                <TouchableOpacity style={styles.contbtn} >
+                <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('AddPaciente', {IdTerapeuta: IdTerapeuta})} >
                     <Image
                         style={styles.imgbtn}
                         source={require('../../assets/design/Add.png')}
@@ -122,12 +120,12 @@ const styles = StyleSheet.create({
         left: 85
     },
     headercontext: {
-        height: '20%',
+        height: '25%',
         width: '100%',
         justifyContent: 'center',
         alignContent: 'center',
         position: 'relative',
-        top: 30,
+        top: 0,
         flexDirection: 'column'
     },
     h2: {
@@ -181,8 +179,8 @@ const styles = StyleSheet.create({
         right: 30
     },
     imgbtn: {
-        height: 40,
-        width: 40
+        height: 60,
+        width: 60
     }
 });
 

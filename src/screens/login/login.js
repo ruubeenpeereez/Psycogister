@@ -40,7 +40,7 @@ const Login = ({ navigation, route }) => {
             if (correct === "OK") {
                 if (Rol == 1) {
                     navigation.navigate('Inicio', {
-                        IdAssistant: resultat.Id,
+                        IdTerapeuta: resultat.Id,
                     })
                 }
 
