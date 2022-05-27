@@ -19,108 +19,49 @@ import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4",
     tint: "#2b49c3"
 }
 
-const Add = ({ route, navigation }) => {
+const AddPaciente = ({ route, navigation }) => {
 
-    const { IdTerapeuta,} = route.params;
+    const { IdTerapeuta } = route.params;
 
     const [Nombre, setNombre] = React.useState("");
     const [Apellidos, setApellidos] = React.useState("");
-    const [Edad, setEdad] = React.useState(50);
+    const [Edad, setEdad] = React.useState();
     const [Telefono, setTelefono] = React.useState("");
     const [Diagnostico, setDiagnostico] = React.useState("");
     const [Observaciones, setObservaciones] = React.useState("");
 
-    function validar() {
-        if (Nombre.length == 0 &&
-            Apellidos.length == 0 &&
-            Edad == 0 &&
-            Telefono.length == 0 &&
-            Diagnostico.length == 0 &&
-            Observaciones.length == 0) {
-            Alert.alert("Error", "All fields are empty", [
-                { text: "Ok", onPress: () => console.log("error") }
-            ]);
-            return false;
-        } else {
-            if (Nombre.length == 0) {
-                Alert.alert("Error", "Name field is empty", [
-                    { text: "Ok", onPress: () => console.log("error") }
-                ]);
-                return false;
-            } else {
-                if (Apellidos.length == 0) {
-                    Alert.alert("Error", "Last Name field is empty", [
-                        { text: "Ok", onPress: () => console.log("error") }
-                    ]);
-                    return false;
-                } else {
-                    if (Edad == 0) {
-                        Alert.alert("Error", "Age field incorrect", [
-                            { text: "Ok", onPress: () => console.log("error") }
-                        ]);
-                        return false;
-                    } else {
-                        if (Telefono.length == 0) {
-                            Alert.alert("Error", "Phone field is empty", [
-                                { text: "Ok", onPress: () => console.log("error") }
-                            ]);
-                            return false;
-                        } else {
-                            if (Diagnostico.length == 0) {
-                                Alert.alert("Error", "Diseases field is empty", [
-                                    { text: "Ok", onPress: () => console.log("error") }
-                                ]);
-                                return false;
-                            } else {
-                                if (Observaciones.length == 0) {
-                                    Alert.alert("Error", "Diseases field is empty", [
-                                        { text: "Ok", onPress: () => console.log("error") }
-                                    ]);
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 
     const postDatos = async () => {
 
-        const resultInser = await axios.post('http:52.174.144.160:5000/test?', {
+        const resultInser = await axios.post('http:51.137.86.80:5000/test?', {
             op: "Add", idTerapeuta: IdTerapeuta, name: Nombre, lastName: Apellidos, age: Edad, tel: Telefono,
             diagnostico: Diagnostico, observaciones: Observaciones,
         })
 
         console.log(resultInser.data);
-        //setDatos(response.data);
 
         return resultInser;
 
     }
 
     const addPerson = async () => {
-        if (validar()) {
+       
             const resultat = await postDatos()
 
             if (resultat.data.correct === "OK") {
 
                 Alert.alert("Added", "Person added correctly")
-                navigation.navigate("IndexAssistant", { User: User, IdAssistant: IdAssistant, Gender: Gender, Mail: Mail })
+                navigation.navigate("Inicio", { IdTerapeuta: IdTerapeuta})
 
             } else {
 
                 resultat.log("Datos no es OK");
 
             }
-        }
+        
     }
 
     return (
@@ -131,11 +72,11 @@ const Add = ({ route, navigation }) => {
                     source={require('../../assets/design/LogoRecortado.png')}
                     style={styles.imagen}
                 />
-                <ScrollView >
-                    <View>
-                        <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>
-                            Añadir Paciente
-                        </Text>
+                <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>
+                    Añadir Paciente
+                </Text>
+                <ScrollView style={{width:'100%'}}>
+                    <View style={{alignItems:'center'}}>
                         <TextInput
                             outlineColor={colors.themeColor}
                             placeholder='Nombre'
@@ -163,7 +104,6 @@ const Add = ({ route, navigation }) => {
                             style={styles.box}
                             mode='outlined'
                             label='Edad'
-                            selectionColor='#99c8de'
                             value={Edad}
                             onChangeText={Edad => setEdad(Edad)}
                             theme={{ colors: { primary: colors.themeColor } }}
@@ -171,8 +111,10 @@ const Add = ({ route, navigation }) => {
                         <TextInput
                             outlineColor={colors.themeColor}
                             placeholder='Telefono'
+                            maxLength={9}
                             style={styles.box}
                             label='Telefono'
+                            keyboardType='numeric'
                             mode='outlined'
                             value={Telefono}
                             onChangeText={Telefono => setTelefono(Telefono)}
@@ -191,7 +133,7 @@ const Add = ({ route, navigation }) => {
                         <TextInput
                             outlineColor={colors.themeColor}
                             placeholder='Observaciones'
-                            style={styles.box}
+                            style={{width:250, alignSelf:'center'}}
                             label='Observaciones'
                             numberOfLines={5}
                             multiline
@@ -208,7 +150,7 @@ const Add = ({ route, navigation }) => {
                             onPress={() => addPerson()}
                             labelStyle={{ color: 'white' }}
                         >
-                            Add
+                            Añadir
                         </Button>
                     </View>
                 </ScrollView>
@@ -234,23 +176,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center'
     },
-    chips: {
-        marginTop: 15,
-    },
     imagen: {
-        height: "30%",
-        width: "35%",
+        height: 120,
+        width: 150,
     },
     box: {
         height: 40,
         margin: 10,
-        width: 250
+        width: 250,
     },
-    subtext: {
-        fontSize: 12,
-        color: "#666",
-        margin: 20,
-    }
 });
 
-export default Add;
+export default AddPaciente;

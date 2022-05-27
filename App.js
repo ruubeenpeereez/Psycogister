@@ -14,6 +14,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Login from './src/screens/login/login';
 import Inicio from './src/screens/terapeuta/Inicio';
 import AddPaciente from './src/screens/terapeuta/AddPaciente';
+import InfoPaciente from './src/screens/terapeuta/InfoPaciente';
+import Autorregistros from './src/screens/terapeuta/Autorregistros';
+import InfoLinks from './src/screens/terapeuta/InfoLinks';
+
 
 import {
   StatusBar,
@@ -29,9 +33,6 @@ const logo = require("./src/assets/design/Logo.png");
 const colors = {
   themeColor: "#4263ec",
   white: "#fff",
-  background: "#f4f6fc",
-  greyish: "#a4a4a4",
-  tint: "#2b49c3"
 }
 
 const image = { uri: "https://t3.ftcdn.net/jpg/01/04/00/12/360_F_104001210_V2Q2d2u5xVT5Ay8Afgp51c6vJIeFlqy6.jpg" };
@@ -67,6 +68,9 @@ const App = ({ navigation }) => {
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Inicio" component={Inicio} />
           <Stack.Screen name="AddPaciente" component={AddPaciente} />
+          <Stack.Screen name="InfoPaciente" component={InfoPaciente} />
+          <Stack.Screen name="Autorregistros" component={Autorregistros} />
+          <Stack.Screen name="InfoLinks" component={InfoLinks} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
@@ -94,14 +98,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 2,
     bottom: 80
-  },
-  h1: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    position: 'relative',
-    zIndex: 2,
-    bottom: 120,
-    color: colors.white
   },
 });
 

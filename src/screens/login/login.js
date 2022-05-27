@@ -7,8 +7,6 @@ import axios from "axios";
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4",
     tint: "#2b49c3"
 }
 
@@ -39,13 +37,15 @@ const Login = ({ navigation, route }) => {
             const { Rol } = resultat;
             if (correct === "OK") {
                 if (Rol == 1) {
+                    setPassword("");
+                    setUser("");
                     navigation.navigate('Inicio', {
-                        IdAssistant: resultat.Id,
+                        IdTerapeuta: resultat.Id,
                     })
                 }
 
             } else {
-                Alert.alert("Error 404", "The account could not be found", [
+                Alert.alert("Error 404", "El nombre de usuario o la contraseña son incorrectos", [
                     { text: "Ok", onPress: () => console.log("error") }
                 ]);
             }
@@ -54,19 +54,19 @@ const Login = ({ navigation, route }) => {
 
     function validar() {
         if (User.length == 0 && Password.length == 0) {
-            Alert.alert("Error", "All fields are empty", [
+            Alert.alert("Error", "Los campos estan vacios", [
                 { text: "Ok", onPress: () => console.log("error") }
             ]);
             return false;
         } else {
             if (User.length == 0) {
-                Alert.alert("Error", "The user field is empty", [
+                Alert.alert("Error", "El campo de usuarios esta vacio", [
                     { text: "Ok", onPress: () => console.log("error") }
                 ]);
                 return false;
             } else {
                 if (Password.length == 0) {
-                    Alert.alert("Error", "The password field is empty", [
+                    Alert.alert("Error", "El campo de la contraseña esta vacio", [
                         { text: "Ok", onPress: () => console.log("error") }
                     ]);
                     return false;
@@ -82,7 +82,6 @@ const Login = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
             <ImageBackground source={image} style={styles.bgImage} resizeMode="cover">
-
                 <Image
                     style={styles.LogoImg}
                     source={logo}
@@ -185,6 +184,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         zIndex: 2,
     },
+    
     bgImage: {
         height: "100%",
         width: "100%",
@@ -243,25 +243,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: colors.white,
         fontWeight: '300'
-    },
-    btnout: {
-        height: 45,
-        width: 250,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 5,
-        borderColor: colors.themeColor,
-        borderWidth: 1,
-    },
-    btnoutT: {
-        fontSize: 16,
-        color: colors.themeColor,
-        fontWeight: '300'
-    },
-    context: {
-        height: 20,
-        position: 'relative',
-        top: 80
     },
 });
 
