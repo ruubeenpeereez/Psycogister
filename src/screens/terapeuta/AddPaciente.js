@@ -134,8 +134,8 @@ const AddPaciente = ({ route, navigation }) => {
                 <Text style={{ fontSize: 25, color: colors.themeColor, alignSelf: "center" }}>
                     Añadir Paciente
                 </Text>
-                <ScrollView >
-                    <View>
+                <ScrollView style={{width:'100%'}}>
+                    <View style={{alignItems:'center'}}>
                         <TextInput
                             outlineColor={colors.themeColor}
                             placeholder='Nombre'

@@ -25,7 +25,7 @@ const BottomTabs = ({}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.navs2}>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Autorregistros')}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.reset}>
                     <Image source={require("../../assets/design/iconoNavUser.png")} style={styles.imagen1}></Image>
                     <Text style={styles.h1}>Paciente</Text>
                 </TouchableOpacity>
