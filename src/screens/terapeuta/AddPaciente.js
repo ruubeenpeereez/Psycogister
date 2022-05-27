@@ -19,8 +19,6 @@ import { Chip, RadioButton, TextInput, Button } from 'react-native-paper';
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4",
     tint: "#2b49c3"
 }
 
@@ -35,61 +33,6 @@ const AddPaciente = ({ route, navigation }) => {
     const [Diagnostico, setDiagnostico] = React.useState("");
     const [Observaciones, setObservaciones] = React.useState("");
 
-    function validar() {
-        if (Nombre.length == 0 &&
-            Apellidos.length == 0 &&
-            Telefono.length == 0 &&
-            Diagnostico.length == 0 &&
-            Observaciones.length == 0) {
-            Alert.alert("Error", "All fields are empty", [
-                { text: "Ok", onPress: () => console.log("error") }
-            ]);
-            return false;
-        } else {
-            if (Nombre.length == 0) {
-                Alert.alert("Error", "Name field is empty", [
-                    { text: "Ok", onPress: () => console.log("error") }
-                ]);
-                return false;
-            } else {
-                if (Apellidos.length == 0) {
-                    Alert.alert("Error", "Last Name field is empty", [
-                        { text: "Ok", onPress: () => console.log("error") }
-                    ]);
-                    return false;
-                } else {
-                    if (Edad.length == 0) {
-                        Alert.alert("Error", "Age field incorrect", [
-                            { text: "Ok", onPress: () => console.log("error") }
-                        ]);
-                        return false;
-                    } else {
-                        if (Telefono.length == 0) {
-                            Alert.alert("Error", "Phone field is empty", [
-                                { text: "Ok", onPress: () => console.log("error") }
-                            ]);
-                            return false;
-                        } else {
-                            if (Diagnostico.length == 0) {
-                                Alert.alert("Error", "Diseases field is empty", [
-                                    { text: "Ok", onPress: () => console.log("error") }
-                                ]);
-                                return false;
-                            } else {
-                                if (Observaciones.length == 0) {
-                                    Alert.alert("Error", "Diseases field is empty", [
-                                        { text: "Ok", onPress: () => console.log("error") }
-                                    ]);
-                                    return false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
 
     const postDatos = async () => {
 
@@ -99,15 +42,13 @@ const AddPaciente = ({ route, navigation }) => {
         })
 
         console.log(resultInser.data);
-        //setDatos(response.data);
 
         return resultInser;
 
     }
 
     const addPerson = async () => {
-        //if (validar()) {
-            console.log(IdTerapeuta + " a");
+       
             const resultat = await postDatos()
 
             if (resultat.data.correct === "OK") {
@@ -120,7 +61,7 @@ const AddPaciente = ({ route, navigation }) => {
                 resultat.log("Datos no es OK");
 
             }
-        //}
+        
     }
 
     return (
@@ -235,9 +176,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center'
     },
-    chips: {
-        marginTop: 15,
-    },
     imagen: {
         height: 120,
         width: 150,
@@ -247,11 +185,6 @@ const styles = StyleSheet.create({
         margin: 10,
         width: 250,
     },
-    subtext: {
-        fontSize: 12,
-        color: "#666",
-        margin: 20,
-    }
 });
 
 export default AddPaciente;

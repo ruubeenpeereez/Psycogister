@@ -11,22 +11,12 @@ import {
 } from 'react-native';
 
 import axios from "axios";
-import { MaterialCommunityIcons, AntDesign } from "react-native-vector-icons";
-import { TextInput, Button } from "react-native-paper";
 import { useNavigation } from '@react-navigation/native';
-import react from "react";
-import { white } from "react-native-paper/lib/typescript/styles/colors";
 
 const colors = {
     themeColor: "#4263ec",
     white: "#fff",
     background: "#f4f6fc",
-    greyish: "#a4a4a4",
-    tint: "#2b49c3",
-
-    high: '#FF5252',
-    medium: '#FFC107',
-    low: '#4CAF50'
 }
 
 
@@ -46,7 +36,6 @@ const CardPaciente = (props) => {
 
         console.log(resultInser.data);
 
-        //setDatos(response.data);
 
         return resultInser.data;
 
@@ -59,18 +48,18 @@ const CardPaciente = (props) => {
         const { correct } = resultat;
         if (correct === "OK") {
             setDisplay("none");
-            Alert.alert("Delete", "Delete was succefully");
+            Alert.alert("Borrar", "Se ha eliminado al paciente");
 
         } else {
 
-            Alert.alert("Error", "Unable to delete")
+            Alert.alert("Error", "No se ha podido eliminar")
 
         }
     }
 
     const del = () => {
 
-        Alert.alert("Delete", "Are you sure you want to do the delete", [
+        Alert.alert("Borrar", "Estas seguro de que quieres eliminar al paciente", [
             {
                 text: "Cancel",
             },
@@ -144,26 +133,6 @@ const CardPaciente = (props) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        height: 180,
-        width: 320,
-        backgroundColor: colors.white,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 20,
-        marginBottom: 50,
-        marginTop: 50
-    },
-    header: {
-        flex: 0.6,
-        width: '100%',
-        backgroundColor: colors.low,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        opacity: 0.8
-    },
     img: {
         height: 58,
         width: 58,
@@ -201,14 +170,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         flexDirection: 'row'
-    },
-    btn1: {
-        height: 35,
-        width: 150,
-        backgroundColor: colors.themeColor,
-        borderRadius: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     btn2: {
         height: 45,

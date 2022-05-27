@@ -16,7 +16,6 @@ import Inicio from './src/screens/terapeuta/Inicio';
 import AddPaciente from './src/screens/terapeuta/AddPaciente';
 import InfoPaciente from './src/screens/terapeuta/InfoPaciente';
 import Autorregistros from './src/screens/terapeuta/Autorregistros';
-import Paciente from './src/screens/terapeuta/InfoPaciente';
 import InfoLinks from './src/screens/terapeuta/InfoLinks';
 
 
@@ -34,9 +33,6 @@ const logo = require("./src/assets/design/Logo.png");
 const colors = {
   themeColor: "#4263ec",
   white: "#fff",
-  background: "#f4f6fc",
-  greyish: "#a4a4a4",
-  tint: "#2b49c3"
 }
 
 const image = { uri: "https://t3.ftcdn.net/jpg/01/04/00/12/360_F_104001210_V2Q2d2u5xVT5Ay8Afgp51c6vJIeFlqy6.jpg" };
@@ -102,14 +98,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 2,
     bottom: 80
-  },
-  h1: {
-    fontSize: 35,
-    fontWeight: 'bold',
-    position: 'relative',
-    zIndex: 2,
-    bottom: 120,
-    color: colors.white
   },
 });
 

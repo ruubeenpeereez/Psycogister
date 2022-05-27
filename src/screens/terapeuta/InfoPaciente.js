@@ -13,16 +13,6 @@ import {
     TouchableOpacity, ImageBackground
 } from 'react-native';
 
-
-const colors = {
-    themeColor: "#4263ec",
-    white: "#fff",
-    background: "#f4f6fc",
-    greyish: "#a4a4a4",
-    tint: "#2b49c3",
-    fadedwhite: "#E0E1E4"
-}
-
 const image = require("../../assets/design/background.jpg");
 
 import BottomTabs from "./BottomTabs";
@@ -31,23 +21,6 @@ const InfoPaciente = ({ route, navigation }) => {
 
     const { id, tel, age, name, lastName, diagnostico, observaciones, IdTerapeuta } = route.params;
 
-    const [ColorText, setColorText] = React.useState(colors.greyish);
-    const [textColor, setTextColor] = useState(colors.white);
-    const [selected, setSelected] = useState(false);
-    const [style, setStyle] = useState({
-        borderColor: colors.fadedwhite,
-        backgroundColor: colors.background
-    });
-
-    useEffect(() => {
-        if (selected) {
-            setTextColor(colors.white);
-            setStyle({ borderColor: colors.themeColor, backgroundColor: colors.white });
-        } else {
-            setTextColor(colors.themeColor);
-            setStyle({ borderColor: colors.themeColor, backgroundColor: 'transparent' });
-        }
-    }, [selected]);
 
     return (
         <View style={styles.container}>
@@ -115,7 +88,7 @@ const InfoPaciente = ({ route, navigation }) => {
                             </Text>
                         </View>
                         <View style={styles.texti}>
-                            <Text style={{ color: '#444', flexShrink: 1, right:20 }}>{observaciones}</Text>
+                            <Text style={{ color: '#444', flexShrink: 1, width:"85%" }}>{observaciones}</Text>
                         </View>
                     </View>
                 </View>
@@ -167,32 +140,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    contbtn: {
-        height: 60,
-        width: 60,
-        backgroundColor: colors.themeColor,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 200,
-        position: 'absolute',
-        bottom: 35,
-        right: 30
-    },
-    imgbtn: {
-        height: 40,
-        width: 40
-    },
-    content: {
-        height: 400,
-        width: 330,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.white,
-        position: 'relative',
-        bottom: 220,
-        borderRadius: 30,
-        padding: 10,
-    },
     texti: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -210,13 +157,6 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
     },
-    wrapper: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-
-    },
     header1: {
         flex: 1,
         width: '100%',
@@ -230,13 +170,6 @@ const styles = StyleSheet.create({
     },
     body1: {
         flex: 3,
-        width: '100%',
-        paddingTop: 10,
-        alignItems: 'flex-start',
-        flexDirection: 'column',
-    },
-    footer1: {
-        flex: 1,
         width: '100%',
         paddingTop: 10,
         alignItems: 'flex-start',

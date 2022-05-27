@@ -15,19 +15,11 @@ import {
 import { useIsFocused } from "@react-navigation/native";
 
 import axios from "axios";
-import { TextInput, Button } from "react-native-paper";
 
-//import Add from "./Add";
 import CardPaciente from "./CardPaciente";
-//import Information from "./Information";
 
 const colors = {
-    themeColor: "#4263ec",
-    white: "#fff",
     background: "#f4f6fc",
-    greyish: "#a4a4a4",
-    tint: "#2b49c3",
-    pink: "#D16BA5"
 }
 
 const image = require("../../assets/design/background.jpg");
@@ -41,7 +33,6 @@ const Inicio = ({ route, navigation }) => {
     const [pacientes, setPacientes] = React.useState([]);
 
     useEffect(() => {
-        // write your code here, it's like componentWillMount
 
         if (isFocused) {
             obtenerPacientes();
@@ -56,10 +47,6 @@ const Inicio = ({ route, navigation }) => {
 
         setPacientes(resultInser.data.array);
 
-        //console.log(pacientes);
-
-        //setPacientes(resultInser.data.array);
-
     }
 
 
@@ -69,6 +56,12 @@ const Inicio = ({ route, navigation }) => {
 
 
                 <View style={styles.headercontext}>
+                    <TouchableOpacity style={styles.logOut} onPress={() => navigation.navigate('Login')} >
+                        <Image
+                            style={styles.imgOut}
+                            source={require('../../assets/design/iconLogOut.png')}
+                        />
+                    </TouchableOpacity>
                     <Image
                         style={styles.img}
                         source={require('../../assets/design/LogoRecortado.png')}
@@ -81,7 +74,7 @@ const Inicio = ({ route, navigation }) => {
 
                 <View style={styles.content}>
                     <ScrollView>
-                        
+
                         {pacientes.map((element, pos) => {
                             console.log(element);
                             return (<CardPaciente key={pos} id={element.Id} name={element.Nombre} lastName={element.Apellidos} diagnostico={element.Diagnostico} tel={element.Telefono}
@@ -89,7 +82,7 @@ const Inicio = ({ route, navigation }) => {
                         })}
                     </ScrollView>
                 </View>
-                <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('AddPaciente', {IdTerapeuta: IdTerapeuta})} >
+                <TouchableOpacity style={styles.contbtn} onPress={() => navigation.navigate('AddPaciente', { IdTerapeuta: IdTerapeuta })} >
                     <Image
                         style={styles.imgbtn}
                         source={require('../../assets/design/Add.png')}
@@ -107,6 +100,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
 
+    },
+    logOut: {
+        left: 10,
+        top: 50,
+    },
+    imgOut:{
+        height:30,
+        width:30,
     },
     bgImage: {
         height: "100%",
@@ -136,22 +137,6 @@ const styles = StyleSheet.create({
         position: 'relative',
         left: 70
     },
-    contimg: {
-        height: 80,
-        width: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: colors.white,
-        position: 'relative',
-        left: 300,
-        bottom: 38,
-        borderRadius: 100
-    },
-    logo: {
-        height: 58,
-        width: 52,
-    },
     content: {
         flex: 5,
         width: '100%',
@@ -161,12 +146,6 @@ const styles = StyleSheet.create({
         bottom: 5,
         top: 20,
         paddingBottom: 20
-    },
-    footer: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        flexDirection: 'row',
     },
     contbtn: {
         height: 60,
