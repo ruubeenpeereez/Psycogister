@@ -2,4 +2,4 @@
 
 # Escanear el QR para descargar la Aplicacion
 
-![qrAPK](https://user-images.githubusercontent.com/104682640/170733954-cd34cb45-3d7b-4b7c-b4ed-614cadac5c08.png)
+![QRPsycogister](https://user-images.githubusercontent.com/104682640/170737942-0186361f-538c-407f-9748-e922fc426b2d.png)
