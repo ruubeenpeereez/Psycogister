@@ -53,11 +53,12 @@ const AddPaciente = ({ route, navigation }) => {
 
             if (resultat.data.correct === "OK") {
 
-                Alert.alert("Added", "Person added correctly")
+                Alert.alert("Creación", "Paciente añadido correctamente")
                 navigation.navigate("Inicio", { IdTerapeuta: IdTerapeuta})
 
-            } else {
+            } else if(resultat.data.correct === "ERROR"){
 
+                Alert.alert("Creación", "Algo ha ido mal reintenta introducir el paciente")
                 resultat.log("Datos no es OK");
 
             }
